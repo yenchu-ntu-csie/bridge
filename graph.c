@@ -3,27 +3,27 @@
 #define INITIAL_CAPACITY 2
 
 struct graph{
-    unsigned long long n;
-    unsigned long long** adj;
-    unsigned long long* capacity;
-    unsigned long long* degree;
+    unsigned int n;
+    unsigned int** adj;
+    unsigned int* capacity;
+    unsigned int* degree;
 };
 
-struct graph newGraph(const unsigned long long n){
+struct graph newGraph(const unsigned int n){
     struct graph g;
     g.n = n;
-    g.adj = (unsigned long long**)malloc((n + 1) * sizeof(unsigned long long *));
-    g.capacity = (unsigned long long*)malloc((n + 1) * sizeof(unsigned long long));
-    for(unsigned long long i = 1; i < n + 1; i++){
-        g.adj[i] = (unsigned long long*)malloc(INITIAL_CAPACITY * sizeof(unsigned long long));
+    g.adj = (unsigned int**)malloc((n + 1) * sizeof(unsigned int *));
+    g.capacity = (unsigned int*)malloc((n + 1) * sizeof(unsigned int));
+    for(unsigned int i = 1; i < n + 1; i++){
+        g.adj[i] = (unsigned int*)malloc(INITIAL_CAPACITY * sizeof(unsigned int));
         g.capacity[i] = INITIAL_CAPACITY;
     }
-    g.degree = (unsigned long long*)calloc(n + 1, sizeof(unsigned long long));
+    g.degree = (unsigned int*)calloc(n + 1, sizeof(unsigned int));
     return g;
 }
 
 void freeGraph(struct graph* g){
-    for(unsigned long long i = 1; i < g->n + 1; i++){
+    for(unsigned int i = 1; i < g->n + 1; i++){
         free(g->adj[i]);
     }
     free(g->adj);
@@ -31,14 +31,14 @@ void freeGraph(struct graph* g){
     free(g->degree);
 }
 
-void addEdge(struct graph* const g, const unsigned long long u, const unsigned long long v){
+void addEdge(struct graph* const g, const unsigned int u, const unsigned int v){
     if(g->degree[u] == g->capacity[u]){
         g->capacity[u] *= 2;
-        g->adj[u] = (unsigned long long*)realloc(g->adj[u], g->capacity[u] * sizeof(unsigned long long));
+        g->adj[u] = (unsigned int*)realloc(g->adj[u], g->capacity[u] * sizeof(unsigned int));
     }
     if(g->degree[v] == g->capacity[v]){
         g->capacity[v] *= 2;
-        g->adj[v] = (unsigned long long*)realloc(g->adj[v], g->capacity[v] * sizeof(unsigned long long));
+        g->adj[v] = (unsigned int*)realloc(g->adj[v], g->capacity[v] * sizeof(unsigned int));
     }
     g->adj[u][g->degree[u]] = v;
     g->degree[u]++;
@@ -46,18 +46,18 @@ void addEdge(struct graph* const g, const unsigned long long u, const unsigned l
     g->degree[v]++;
 }
 
-unsigned long long findBridges(const struct graph* const g){
-    unsigned long long* height = (unsigned long long*)calloc(g->n + 1, sizeof(unsigned long long));
-    unsigned long long count = 0;
+unsigned int findBridges(const struct graph* const g){
+    unsigned int* height = (unsigned int*)calloc(g->n + 1, sizeof(unsigned int));
+    unsigned int count = 0;
 
-    unsigned long long dfs(const unsigned long long u, const unsigned long long p, const unsigned long long assigned_height){
+    unsigned int dfs(const unsigned int u, const unsigned int p, const unsigned int assigned_height){
         if(height[u] > 0) return height[u];
         height[u] = assigned_height;
-        unsigned long long minheight = assigned_height;
-        for(unsigned long long i = 0; i < g->degree[u]; i++){
-            unsigned long long v = g->adj[u][i];
+        unsigned int minheight = assigned_height;
+        for(unsigned int i = 0; i < g->degree[u]; i++){
+            unsigned int v = g->adj[u][i];
             if(v == p) continue;
-            unsigned long long childLow = dfs(v, u, assigned_height + 1);
+            unsigned int childLow = dfs(v, u, assigned_height + 1);
             if(childLow == assigned_height + 1){
                 count++;
                 continue;
@@ -67,7 +67,7 @@ unsigned long long findBridges(const struct graph* const g){
         return minheight;
     }
 
-    for(unsigned long long i = 1; i < g->n; i++) dfs(i, 0, 1);
+    for(unsigned int i = 1; i < g->n; i++) dfs(i, 0, 1);
     free(height);
     return count;
 }
