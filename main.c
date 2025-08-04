@@ -4,11 +4,11 @@
 
 int main(){
     unsigned int n, m;
-    if(scanf("%u %u", &n, &m) == EOF) return 1;
+    if(scanf("%u%u", &n, &m) == EOF) return 1;
     struct disjointSet ds1 = newDisjointSet(n);
     struct disjointSet ds2 = newDisjointSet(n);
     struct graph g = newGraph(n);
-    for(unsigned int u, v; scanf("%u %u", &u, &v) == 2;){
+    for(unsigned int u, v; scanf("%u%u", &u, &v) == 2;){
         if(u < 1 || u > n || v < 1 || v > n || u == v) return 1;
         if(find(&ds2, u) == find(&ds2, v)) continue;
         if(find(&ds1, u) != find(&ds1, v)){
