@@ -1,13 +1,12 @@
 # Bridge Finder (Streaming Data Model)
 
-This project is a C/C++ implementation to find bridges in a graph. A bridge in a graph is an edge that, if removed, increases the number of connected components.
+This project is a C implementation to find bridges in a graph. A bridge in a graph is an edge that, if removed, increases the number of connected components.
 
 ## Project Structure
 
 - **main.c**: The main entry point of the program.
 - **graph.c**: Contains graph-related data structures and functions.
 - **disjointset.c**: Implements the disjoint set (union-find) data structure.
-- **main.cpp**: The same algorithm implemented in C++.
 - **compile.sh**: Shell script to compile the program.
 - **execute.sh**: Shell script to execute the program.
 
