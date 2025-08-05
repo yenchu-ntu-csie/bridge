@@ -32,3 +32,8 @@ The algorithm implemented in this project has the following complexities:
 
 - **Space Complexity**: $O(N)$, where N is the number of nodes in the graph. This is due to the storage requirements of the disjoint set and graph data structures. The algorithm works under the streaming data model, so most of the edges in the graph are not stored. Instead, only $O(N)$ edges are stored, significantly reducing the space complexity.
 - **Time Complexity**: $O(N\alpha(N))$ in the worst case, where $\alpha$ is the inverse Ackermann function. This arises from the union-find operations with path compression and union by rank.
+
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE.md](LICENSE.md) file for details.
