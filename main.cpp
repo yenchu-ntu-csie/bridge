@@ -48,7 +48,7 @@ public:
         ++degree[v];
     }
 
-    unsigned int findBridges() const {
+    unsigned int numBridges() const {
         std::vector<unsigned int> height(n + 1, 0);
         unsigned int count = 0;
 
@@ -101,6 +101,6 @@ int main() {
         g.addEdge(u, v);
     }
 
-    std::cout << g.findBridges() << std::endl;
+    std::cout << g.numBridges() << std::endl;
     return 0;
 }
