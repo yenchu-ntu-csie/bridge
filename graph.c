@@ -46,7 +46,7 @@ void addEdge(const struct graph* const g, const unsigned int u, const unsigned i
     g->degree[v]++;
 }
 
-unsigned int findBridges(const struct graph* const g){
+unsigned int numBridges(const struct graph* const g){
     unsigned int* const height = (unsigned int*)calloc(g->n + 1, sizeof(unsigned int));
     unsigned int count = 0;
 

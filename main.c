@@ -21,7 +21,7 @@ int main(){
     }
     freeDisjointSet(&ds1);
     freeDisjointSet(&ds2);
-    printf("%u\n", findBridges(&g));
+    printf("%u\n", numBridges(&g));
     freeGraph(&g);
     return 0;
 }
