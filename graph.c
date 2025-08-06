@@ -22,7 +22,7 @@ struct graph newGraph(const unsigned int n){
     return g;
 }
 
-void freeGraph(struct graph* g){
+void freeGraph(const struct graph* const g){
     for(unsigned int i = 1; i < g->n + 1; i++){
         free(g->adj[i]);
     }
@@ -31,7 +31,7 @@ void freeGraph(struct graph* g){
     free(g->degree);
 }
 
-void addEdge(struct graph* const g, const unsigned int u, const unsigned int v){
+void addEdge(const struct graph* const g, const unsigned int u, const unsigned int v){
     if(g->degree[u] == g->capacity[u]){
         g->capacity[u] *= 2;
         g->adj[u] = (unsigned int*)realloc(g->adj[u], g->capacity[u] * sizeof(unsigned int));
@@ -47,7 +47,7 @@ void addEdge(struct graph* const g, const unsigned int u, const unsigned int v){
 }
 
 unsigned int findBridges(const struct graph* const g){
-    unsigned int* height = (unsigned int*)calloc(g->n + 1, sizeof(unsigned int));
+    unsigned int* const height = (unsigned int*)calloc(g->n + 1, sizeof(unsigned int));
     unsigned int count = 0;
 
     unsigned int dfs(const unsigned int u, const unsigned int p, const unsigned int assigned_height){
