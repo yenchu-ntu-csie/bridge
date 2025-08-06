@@ -4,7 +4,7 @@
 
 int main(){
     unsigned int n, m;
-    if(scanf("%u%u", &n, &m) == EOF) return 1;
+    if(scanf("%u%u", &n, &m) != 2) return 1;
     struct disjointSet ds1 = newDisjointSet(n);
     struct disjointSet ds2 = newDisjointSet(n);
     struct graph g = newGraph(n);
